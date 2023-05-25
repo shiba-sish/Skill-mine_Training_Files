@@ -1,0 +1,10 @@
+1. Enter the url - registration page should display.(homepage displayed) 
+2. clicking registration button - registration page should displayed.
+3. register through valide id and password - it should registerd.(if already registerd or any wrong entry it should display error)
+4. after registration homepage should shown.
+5. login wuth valide id and password.(dashboard should open)
+6. with out login or registration also we can add new employee or access the dashboard(it should undone).
+7. check view all employee andadd new employee btn working properly or not.
+8.all added emp show list in list of employees.
+9. click logout. (logout not working we can access dashboard after logout)
+10.user name is stillshowing after logout.(it should not shown)

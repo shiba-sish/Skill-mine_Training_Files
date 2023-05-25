@@ -1,0 +1,7 @@
+Absolute xpath--------->"/html/body/div/div[1]/ul/li[1]/a"
+
+Relative xpath---------> //ul//li[5]
+
+xpath by attribute----->//a[@name='homelink']
+
+xpath by groupIndex----->{//a[@name='homelink']}[1]

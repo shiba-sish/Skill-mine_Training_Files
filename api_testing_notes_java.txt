@@ -1,0 +1,635 @@
+package restassuredproject;
+
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+
+public class Test_01_GETAllMembers 
+{
+	@Test
+	void getAllMembers() 
+	{
+		Response response = RestAssured.get("http://127.0.0.1:5000/members");
+		
+		System.out.println(response.asString());
+		System.out.println(response.getBody());
+		System.out.println(response.getStatusCode());
+		System.out.println(response.getStatusLine());
+		System.out.println(response.getHeader("content-type"));
+		System.out.println(response.getTime());
+		
+	}
+
+}
+
+
+
+
+pom.xml file.
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>rest_assured_api_testing</groupId>
+  <artifactId>rest_assured_api_testing</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+		<!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>5.3.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.7.1</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+		    <groupId>com.googlecode.json-simple</groupId>
+		    <artifactId>json-simple</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
+
+
+
+	</dependencies>
+</project>
+
+
+
+
+
+First program :- 
+
+getting all the members. from the api .
+
+package member_api_testing;
+
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+
+public class Test_01_GETAllMembers {
+	@Test
+	void getAllMembers() 
+	{
+		Response response = RestAssured.get("http://127.0.0.1:5000/members");
+		
+		System.out.println(response.asString());
+		System.out.println(response.getBody());
+		System.out.println(response.getStatusCode());
+		System.out.println(response.getStatusLine());
+		System.out.println(response.getHeader("content-type"));
+		System.out.println(response.getTime());
+		
+	}
+}
+
+
+output :- 
+
+[RemoteTestNG] detected TestNG version 7.4.0
+{
+  "All Members are -": [
+    {
+      "designation": "fresher",
+      "email": "raj@gmail.com",
+      "id": 1,
+      "name": "raj"
+    },
+    {
+      "designation": "fresher",
+      "email": "johny.doe@example.com",
+      "id": 7,
+      "name": "Jo Doey"
+    },
+    {
+      "designation": "fresher",
+      "email": "mark@gmail.com",
+      "id": 9,
+      "name": "mark"
+    },
+    {
+      "designation": "fresher",
+      "email": "mark@gmail.com",
+      "id": 10,
+      "name": "mark"
+    }
+  ]
+}
+
+io.restassured.internal.RestAssuredResponseImpl@700f518a
+200
+HTTP/1.1 200 OK
+application/json
+534
+PASSED: getAllMembers
+
+===============================================
+    Default test
+    Tests run: 1, Failures: 0, Skips: 0
+===============================================
+
+
+===============================================
+Default suite
+Total tests run: 1, Passes: 1, Failures: 0, Skips: 0
+===============================================
+
+
+
+
+
+
+
+# getting members by id. 
+
+
+package member_api_testing;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+
+public class Test_02_GETMemberById {
+	@Test
+	void getAllMembers() 
+	{
+		Response response = RestAssured.get("http://127.0.0.1:5000/member/7");
+		
+		System.out.println(response.asString());
+		System.out.println(response.getBody());
+		System.out.println(response.getStatusCode());
+		System.out.println(response.getStatusLine());
+		System.out.println(response.getHeader("content-type"));
+		System.out.println(response.getTime());
+		
+		int actual_statusCode = response.getStatusCode();
+		Assert.assertEquals(actual_statusCode, 200);
+		
+	}
+}
+
+
+output :- 
+[RemoteTestNG] detected TestNG version 7.4.0
+{
+  "One Member Fetched -": {
+    "designation": "fresher",
+    "email": "johny.doe@example.com",
+    "id": 7,
+    "name": "Jo Doey"
+  }
+}
+
+io.restassured.internal.RestAssuredResponseImpl@27b45ea
+200
+HTTP/1.1 200 OK
+application/json
+722
+PASSED: getAllMembers
+
+===============================================
+    Default test
+    Tests run: 1, Failures: 0, Skips: 0
+===============================================
+
+
+===============================================
+Default suite
+Total tests run: 1, Passes: 1, Failures: 0, Skips: 0
+===============================================
+
+
+
+
+
+# GEt all members using static imports, using gerking language. 
+
+package member_api_testing;
+
+import org.testng.annotations.Test;
+
+import static io.restassured.RestAssured.*;
+import io.restassured.response.Response;
+import static io.restassured.matcher.RestAssuredMatchers.*;
+import static org.hamcrest.Matchers.*;
+
+/* 
+import static io.restassured.RestAssured.get;
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
+
+import org.testng.annotations.Test;
+
+import io.restassured.response.Response;
+
+*/
+
+public class Test_03_GETAllMembersStaticImports {
+	@Test
+	void getAllMembers() 
+	{
+		Response response = get("http://127.0.0.1:5000/members");
+		System.out.println(response.asString());
+		System.out.println(response.getBody());
+		System.out.println(response.getStatusCode());
+		System.out.println(response.getStatusLine());
+		System.out.println(response.getHeader("content-type"));
+		System.out.println(response.getTime());
+	}
+	
+	@Test
+	void test_02_getAllMembers() {
+		given().get("http://127.0.0.1:5000/members").then().statusCode(200);
+	}
+	
+	@Test
+	void test_03_getAllMembers_Body_id() {
+		given().get("http://127.0.0.1:5000/members").then().statusCode(200)
+		.body("All Members are -.id[0]", equalTo(1))
+		.log().all();
+	}
+}
+
+
+ouput : -
+
+
+[RemoteTestNG] detected TestNG version 7.4.0
+{
+  "All Members are -": [
+    {
+      "designation": "fresher",
+      "email": "raj@gmail.com",
+      "id": 1,
+      "name": "raj"
+    },
+    {
+      "designation": "fresher",
+      "email": "johny.doe@example.com",
+      "id": 7,
+      "name": "Jo Doey"
+    },
+    {
+      "designation": "fresher",
+      "email": "mark@gmail.com",
+      "id": 9,
+      "name": "mark"
+    },
+    {
+      "designation": "fresher",
+      "email": "mark@gmail.com",
+      "id": 10,
+      "name": "mark"
+    }
+  ]
+}
+
+io.restassured.internal.RestAssuredResponseImpl@7487b142
+200
+HTTP/1.1 200 OK
+application/json
+612
+HTTP/1.1 200 OK
+Server: Werkzeug/2.2.3 Python/3.11.0
+Date: Thu, 27 Apr 2023 11:41:04 GMT
+Content-Type: application/json
+Content-Length: 497
+Connection: close
+
+{
+    "All Members are -": [
+        {
+            "designation": "fresher",
+            "email": "raj@gmail.com",
+            "id": 1,
+            "name": "raj"
+        },
+        {
+            "designation": "fresher",
+            "email": "johny.doe@example.com",
+            "id": 7,
+            "name": "Jo Doey"
+        },
+        {
+            "designation": "fresher",
+            "email": "mark@gmail.com",
+            "id": 9,
+            "name": "mark"
+        },
+        {
+            "designation": "fresher",
+            "email": "mark@gmail.com",
+            "id": 10,
+            "name": "mark"
+        }
+    ]
+}
+PASSED: test_02_getAllMembers
+PASSED: test_03_getAllMembers_Body_id
+PASSED: getAllMembers
+
+===============================================
+    Default test
+    Tests run: 3, Failures: 0, Skips: 0
+===============================================
+
+
+===============================================
+Default suite
+Total tests run: 3, Passes: 3, Failures: 0, Skips: 0
+===============================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Part 2 :-  GET and POST example:- 
+
+package get_and_post_examples;
+
+import static org.hamcrest.Matchers.equalTo;
+
+import org.json.simple.JSONObject;
+import org.testng.annotations.Test;
+import static io.restassured.RestAssured.*;
+
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import static io.restassured.matcher.RestAssuredMatchers.*;
+import static org.hamcrest.Matchers.*;
+import java.util.Map;
+import java.util.HashMap;
+
+public class GetAndPostExample {
+  
+	@Test
+	public void testGetAllMembers() {
+		
+		given().
+		get("http://127.0.0.1:5000/members")
+		.then()
+		.statusCode(200)
+		.body("All Members are -.name[0]", equalTo("raj"))
+		.body("All Members are -.name", hasItems("raj" , "Jo Doey"))
+		.log().all();
+	}
+	
+	
+	@Test
+	public void AddnewMember() 
+	{
+		Map<String , Object> map = new HashMap<String, Object>();
+//		map.put("name", "mark");
+//		map.put("email", "mark@gmail.com");
+//		map.put("designation", "fresher");
+//		System.out.println(map);
+		
+		JSONObject request = new JSONObject();
+ 		request.put("name", "mark");
+ 		request.put("email", "mark@gmail.com");
+ 		request.put("designation", "fresher");
+		System.out.println(request.toJSONString());
+		
+		given().
+		header("Content-Type", "application/json")
+		.contentType(ContentType.JSON)
+		.body(request.toJSONString())
+		.when().
+		post("http://127.0.0.1:5000/member")
+		.then()
+		.statusCode(200).log().all();
+	}
+}
+
+
+Run this file as testng run. 
+output :- 
+
+[RemoteTestNG] detected TestNG version 7.4.0
+{"name":"mark","designation":"fresher","email":"mark@gmail.com"}
+HTTP/1.1 200 OK
+Server: Werkzeug/2.2.3 Python/3.11.0
+Date: Thu, 27 Apr 2023 11:33:03 GMT
+Content-Type: application/json
+Content-Length: 50
+Connection: close
+
+{
+    "Message": "Member got added successfully."
+}
+HTTP/1.1 200 OK
+Server: Werkzeug/2.2.3 Python/3.11.0
+Date: Thu, 27 Apr 2023 11:33:03 GMT
+Content-Type: application/json
+Content-Length: 497
+Connection: close
+
+{
+    "All Members are -": [
+        {
+            "designation": "fresher",
+            "email": "raj@gmail.com",
+            "id": 1,
+            "name": "raj"
+        },
+        {
+            "designation": "fresher",
+            "email": "johny.doe@example.com",
+            "id": 7,
+            "name": "Jo Doey"
+        },
+        {
+            "designation": "fresher",
+            "email": "mark@gmail.com",
+            "id": 9,
+            "name": "mark"
+        },
+        {
+            "designation": "fresher",
+            "email": "mark@gmail.com",
+            "id": 10,
+            "name": "mark"
+        }
+    ]
+}
+PASSED: AddnewMember
+PASSED: testGetAllMembers
+
+===============================================
+    Default test
+    Tests run: 2, Failures: 0, Skips: 0
+===============================================
+
+
+===============================================
+Default suite
+Total tests run: 2, Passes: 2, Failures: 0, Skips: 0
+===============================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+Part 3 : PUT , PATCH and DELETE:- 
+
+
+put -  update
+code
+
+package put_patch_delete;
+
+
+import org.json.simple.JSONObject;
+import org.testng.annotations.Test;
+import static io.restassured.RestAssured.*;
+
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import static io.restassured.matcher.RestAssuredMatchers.*;
+import static org.hamcrest.Matchers.*;
+import java.util.Map;
+import java.util.HashMap;
+
+
+public class Put_update_example {
+	
+	@Test
+	public void testUpdateFunctinality() {
+		
+		JSONObject request = new JSONObject();
+ 		request.put("name", "mark Athony");
+ 		request.put("email", "markanthony@gmail.com");
+ 		request.put("designation", "Developer");
+ 		
+		System.out.println(request.toJSONString());
+		
+		given().
+		header("Content-Type", "application/json")
+		.contentType(ContentType.JSON)
+		.accept(ContentType.JSON)
+		.body(request.toJSONString())
+		.when().
+		put("http://127.0.0.1:5000/member/10")
+		.then()
+		.statusCode(200)
+		.log().all();
+	}
+}
+
+
+output :- 
+[RemoteTestNG] detected TestNG version 7.4.0
+{"name":"mark Athony","designation":"Developer","email":"markanthony@gmail.com"}
+HTTP/1.1 200 OK
+Server: Werkzeug/2.2.3 Python/3.11.0
+Date: Thu, 27 Apr 2023 13:56:13 GMT
+Content-Type: application/json
+Content-Length: 52
+Connection: close
+
+{
+    "Message": "Member got updated successfully."
+}
+PASSED: testUpdateFunctinality
+
+===============================================
+    Default test
+    Tests run: 1, Failures: 0, Skips: 0
+===============================================
+
+
+===============================================
+Default suite
+Total tests run: 1, Passes: 1, Failures: 0, Skips: 0
+===============================================
+
+
+
+
+Delete code :- 
+
+package put_patch_delete;
+
+import static io.restassured.RestAssured.given;
+
+import org.testng.annotations.Test;
+
+public class TestingDeleteFunctionality 
+{
+	@Test
+	public void testDeleteFunctinality() {
+		
+		given()
+		.when()
+		.delete("http://127.0.0.1:5000/member/9")
+		.then()
+		.statusCode(200)
+		.log()
+		.all();
+	}
+}
+
+output :- 
+
+[RemoteTestNG] detected TestNG version 7.4.0
+HTTP/1.1 200 OK
+Server: Werkzeug/2.2.3 Python/3.11.0
+Date: Thu, 27 Apr 2023 14:04:16 GMT
+Content-Type: application/json
+Content-Length: 52
+Connection: close
+
+{
+    "Message": "Member got deleted successfully."
+}
+PASSED: testDeleteFunctinality
+
+===============================================
+    Default test
+    Tests run: 1, Failures: 0, Skips: 0
+===============================================
+
+
+===============================================
+Default suite
+Total tests run: 1, Passes: 1, Failures: 0, Skips: 0
+===============================================
+
+
+
+
+
+

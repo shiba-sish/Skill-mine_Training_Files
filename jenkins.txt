@@ -1,0 +1,47 @@
+Continuous integration 
+ci process in which when ever a developer performs code check in share repository, the whole project is automatically build and tested , in order to find integration issues. 
+
+CI revels integration issues at a very early stage. 
+
+How CI works 
+
+  tester -  local repository  -  remote repository - ci server - compile, Unit test cases, regerssion test cases, publish reports
+
+
+famous tools for CI:
+1. jenkins
+2. hudson
+3. team city
+4. team foundation server
+
+Jenkins :- 
+1. jenkins is a open source continuous tool/server which is used to automatically build the whole project whenever needed. 
+2. Jenkins is originally created as hudson, but after dispute with oracle , this project is separated by open source community as "Jenkins"
+
+
+
+
+Prerequisits :- 
+1. a project should be ready in your eclipse. usually a testNG project. 
+2. you have to make a folder called as lib in your project and copy all the jar files requied for the application. (selenium standalone jar, apache poi jar, java-mail, testNG etc )
+3. run the project as testNG test, by right clicking on the project. 
+4. now we need to create a bat file.. in order for jenkins to run our project. 
+5. create a .bat file using notepad in your project. 
+
+6. after creating a .bat file. 
+7. go the the broswer and start the jenkins session. using the url 
+localhost:8080
+click on new item. 
+item name you give as jenkinsDemo 
+click on freestyleproject option 
+click on ok button
+mention description
+click on Advacne option button. 
+click on use Custome workspace
+in the Directory search field give the project location.
+Display name - you give any name like( MyjenkinsJob)
+
+Next click on Add Build Step button( dropdown button)
+execute windows batch command 
+
+in Command text area field write your .bat file name, (example.bat)

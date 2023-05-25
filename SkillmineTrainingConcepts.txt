@@ -1,0 +1,34 @@
+1.Java
+2.Python
+3.Java selenium
+4.python selenium
+5.JDBC (MYSQL)
+6.PDBC (MYSQL and SQLITE3)
+7.Java Hybrid framework
+8.Python framework
+9.API making using Flask
+10.Java Api testing
+11.Python Api testing
+12.Spring boot REST API Making
+13.Cucumber framework using POM class
+14.Cucumber framework without using POM class
+15.Creating WebPage using Bootstrap
+16.Creating WebPage using HTML and CSS
+17.Parallel Testing
+18.Cross Browser Tesing
+19.Excel Automation(CRUD Operations on excel sheet)
+20.DataBase(MY SQL and SQlite3)
+21.Generating Allure Reports,TestNG reports
+22.Pytest
+23.Pushing the code to GitHub from Eclipse
+24.Pulling the code from the GitHub to Git then to Eclipse
+25.Gherkin 
+26.Black Box Testing
+27.White Box Testing
+28.Writing Scenarios
+29.Writing TestCases
+30.Preparing Defect Reports
+31.SDLC(Software Developement Life Cycle) 
+32.Scrum Methodology
+33.Agile
+34.JSON Manipulation through java

@@ -1,0 +1,74 @@
+"""selenium WebDriver using TestNg
+Actual result is compared with expected result with the help of Assertion.
+It means verification is done to check if the state of the application is the same to what we are expecting
+or not.
+
+For creating assertion we are going to use the Assert class provided by TestNG.
+
+There are two types of Assertion:-
+
+Hard Assertions.
+Soft assertions.
+
+1. Hard Assertions :
+When any assert statement fails this type of assertion throws an exception immediately
+and continues with the next test in the test suite.
+
+
+Hard Assertion types:-
+
+1. assertEquals –
+This is used to compare expected and actual values in the selenium webdriver.
+The assertion passes with no exception whenever the expected and actual values are same.
+But, if the actual and expected values are not same then assert fails with an exception
+and the test is marked as failed.
+
+Syntax :
+
+Assert.assertEquals(actual, expected);
+
+
+2. assertNotEquals –
+This is just the opposite of assertEquals.
+The assertion passes with no exception whenever the expected and actual values are not same.
+But, if the actual and expected values are same then assert fails with an exception and the test is marked as failed.
+
+Syntax :
+
+Assert.assertNotEquals(actual, expected, message);
+
+
+3. assertTrue –
+This type of assertion is used when you are checking if condition is true.
+That is when we are dealing with boolean values this assertion is used.
+Whenever test case passes it returns true and if condition is false then it skips the current method and jumps to next.
+
+Syntax :
+Assert.assertTrue(condition);
+
+4. assertFalse –
+It checks if value returned is false or not.
+Whenever test case passes it aborts the method and gives an exception.
+
+Syntax :
+Assert.assertFalse(condition);
+
+
+5. assertNull –
+This assertion checks if the object is null or not.
+It aborts the test if object is null and gives an exception.
+
+Syntax :
+Assert.assertNull(object);
+
+6. assertNotNull –
+This assertion checks if object is null or not.
+It aborts the test if object is not null that is if object is having any value and gives an exception.
+
+Syntax :
+Assert.assertNotNull(object);
+
+
+2. Soft Assertion :
+These types of Assertions are the type of assertions do not throw an exception when an assertion fails
+and continues with the next step after the assert statement."""

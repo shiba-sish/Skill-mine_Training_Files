@@ -1,0 +1,15 @@
+Rest Assured-- BDD(Behaviour Driven Development)
+HTTP Request----
+gerkin language--
+
+given()-- content type, set parameter, add auth, add parems, set headers info etc...
+
+when()-- get, post, put, delete
+
+then()-- validation status code, extract responce, extract headers,extract headers cookies & responce body...
+
+static imports of rest assured --
+
+import static io.restassured.RestAssured.*;
+import static io.restassured.matcher.RestAssuredMatchers.*;
+import static org.hamcrest.Matchers.*;

@@ -1,0 +1,608 @@
+1 . requirements - python and pycharm already installed in your system. 
+
+2 . installing pytest module/library in your project folder.
+
+ a. create a python project in pycharm. 
+ b. go to the terminal and type "pip install pytest" it will start installing the pytest module
+
+
+"""(venv) PS C:\Users\Administrator\PycharmProjects\ecoders_selenium_python> pip install pytest
+Collecting pytest
+  Downloading pytest-7.3.1-py3-none-any.whl (320 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 320.5/320.5 kB 864.2 kB/s eta 0:00:00
+Collecting iniconfig
+  Downloading iniconfig-2.0.0-py3-none-any.whl (5.9 kB)
+Collecting packaging
+  Downloading packaging-23.1-py3-none-any.whl (48 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 48.9/48.9 kB 1.2 MB/s eta 0:00:00
+Collecting pluggy<2.0,>=0.12
+  Downloading pluggy-1.0.0-py2.py3-none-any.whl (13 kB)
+Requirement already satisfied: colorama in c:\python311\lib\site-packages (from pytest) (0.4.6)
+Installing collected packages: pluggy, packaging, iniconfig, pytest
+Successfully installed iniconfig-2.0.0 packaging-23.1 pluggy-1.0.0 pytest-7.3.1
+
+"""
+
+2nd way of installing pytest , is from pycharm setting. 
+
+after installation we can verify all the pip and modules installed. 
+
+open command prompt/terminal , to the project location and type. 
+1. to find the python version. 
+python --version 
+
+2. to know all the modules which are alreay installed in the project location. 
+pip list
+
+3. making a text file to put all the modules requred for our project, 
+how to feed this text file to python in order for it to installed all the libraries/modules from this
+text file. 
+
+pip freeze > requirements.txt
+(Note:- when you run this command in your project terminal it wil automatically create notepad text file 
+named as requirements.txt file and if you open this file you can see all the modules which are installed in your project. 
+
+
+Now if we get this project from some one else. and we want to load this same requirements.txt file , 
+to donwload all the libraries for our project. then type the command. 
+
+pip install -r requirements.txt
+
+This will install all the libraries from the internet. 
+
+
+
+
+part 2 :-  Running test scripts in pytest.  
+Naming Conventions for test scripts. 
+Name should start as test_(then some thing)
+example  
+test_loginpage.py
+test_register.py
+test.defect.py
+
+Naming convention for the methods. 
+def text_comename():      (mandatory for pytest)
+
+pytest is going to search for the test files in current directory and sub directories and run those test files. 
+
+Note :- to do verifications in pytest. we use. "assert" keyword. that lets you test if a condition
+in your code returns True or not. 
+
+
+package name - pytest_topics 
+file name - test_o1_module1.py
+
+coding inside the test_01_module1.py
+def test_addition():
+    assert 5+5 == 10
+
+def test_subtraction():
+    assert 5-5 == 0
+
+(Notes one function should check only one result not many conditions ) 
+
+How to run multiple test (multiple function , assertions ) 
+
+Go to the terminal and type. the command, 
+
+Syntax
+"pytest  <name of the python package)"
+
+pytest pytest_topics 
+
+
+
+collected 2 items
+
+pytest_topics\test_o1_module1.py ..                                                                                                                    [100%] 
+
+===================================================================== 2 passed in 0.02s ===================================================================== 
+(venv) PS C:\Users\Administrator\PycharmProjects\ecoders_selenium_python> 
+
+
+
+
+# Failing test intentionally. 
+
+file - test_o1_module1.py
+def test_failingIntentianal():
+    assert 9/5 == 1.5 , "Failing test intentionally"
+
+
+pytest_topics\test_o1_module1.py ..F                                                                                                                   [100%]
+
+========================================================================= FAILURES ========================================================================== 
+__________________________________________________________________ test_failingIntentianal __________________________________________________________________ 
+
+    def test_failingIntentianal():
+>       assert 9/5 == 1.5 , "Failing test intentionally"
+E       AssertionError: Failing test intentionally
+E       assert (9 / 5) == 1.5
+
+pytest_topics\test_o1_module1.py:10: AssertionError
+================================================================== short test summary info ================================================================== 
+FAILED pytest_topics/test_o1_module1.py::test_failingIntentianal - AssertionError: Failing test intentionally
+================================================================ 1 failed, 2 passed in 0.07s ================================================================ 
+(venv) PS C:\Users\Administrator\PycharmProjects\ecoders_selenium_python> 
+
+
+
+
+# running the test in verbose mode by giving -v while running the code. 
+syntax -  pytest -v pytest_topics
+
+output :- 
+
+==================================================================== test session starts ====================================================================
+platform win32 -- Python 3.11.0, pytest-7.3.1, pluggy-1.0.0 -- C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Administrator\PycharmProjects\ecoders_selenium_python
+collected 3 items                                                                                                                                             
+
+pytest_topics/test_o1_module1.py::test_addition PASSED                                                                                                 [ 33%] 
+pytest_topics/test_o1_module1.py::test_subtraction PASSED                                                                                              [ 66%] 
+pytest_topics/test_o1_module1.py::test_failingIntentianal FAILED                                                                                       [100%]
+
+========================================================================= FAILURES ========================================================================== 
+__________________________________________________________________ test_failingIntentianal __________________________________________________________________ 
+
+    def test_failingIntentianal():
+>       assert 9/5 == 1.5 , "Failing test intentionally"
+E       AssertionError: Failing test intentionally
+E       assert (9 / 5) == 1.5
+
+pytest_topics\test_o1_module1.py:10: AssertionError
+================================================================== short test summary info ================================================================== 
+FAILED pytest_topics/test_o1_module1.py::test_failingIntentianal - AssertionError: Failing test intentionally
+================================================================ 1 failed, 2 passed in 0.09s ================================================================ 
+(venv) PS C:\Users\Administrator\PycharmProjects\ecoders_selenium_python> 
+
+
+
+
+
+Part 3 : -running the test script individually or all at a time using the default test runner option of pycharm/
+
+pycharm. -  settings - tools - python integrated tools - Go under testing tab- if it says( Autodetect(pytest) which means python is already running on pytest. no need for any changes from our side.) 
+but if its not . then we can manually select from the dropdown as pytest. option. 
+
+After this setting or configuration is done. you can run the individual test by right clicking on the specific function name and run the file. and it will show the result of that file along. 
+
+if you want to run all the functions , and run all the scripts , the right click any where on the file and run the file. 
+it will get you the results of the functions and test cases. 
+
+
+
+# running the code from command prompts. 
+1. go the the projects location from command prompt. 
+
+2. activate the vertual environment. 
+venv\Scripts\activate
+
+3. pip list 
+will show you all the libraries installed. 
+
+4. running the project file. 
+pytest pytest_topics\test_o1_module1.py
+
+this will run all the scripts. 
+
+
+
+C:\Users\Administrator\PycharmProjects\ecoders_selenium_python>venv\Scripts\activate
+
+(venv) C:\Users\Administrator\PycharmProjects\ecoders_selenium_python>pytest pytest_topics\test_o1_module1.py
+============================================== test session starts ==============================================
+platform win32 -- Python 3.11.0, pytest-7.3.1, pluggy-1.0.0
+rootdir: C:\Users\Administrator\PycharmProjects\ecoders_selenium_python
+collected 3 items
+
+pytest_topics\test_o1_module1.py ..F                                                                       [100%]
+
+=================================================== FAILURES ====================================================
+____________________________________________ test_failingIntentianal ____________________________________________
+
+    def test_failingIntentianal():
+>       assert 9/5 == 1.5 , "Failing test intentionally"
+E       AssertionError: Failing test intentionally
+E       assert (9 / 5) == 1.5
+
+pytest_topics\test_o1_module1.py:10: AssertionError
+============================================ short test summary info ============================================
+FAILED pytest_topics/test_o1_module1.py::test_failingIntentianal - AssertionError: Failing test intentionally
+========================================== 1 failed, 2 passed in 0.08s ==========================================
+
+(venv) C:\Users\Administrator\PycharmProjects\ecoders_selenium_python>
+
+
+
+
+part 4 :- 
+Types of Assertions in python. 
+
+file name - test_01_module1.py
+def test_addition():
+    assert 5+5 == 10
+
+def test_subtraction():
+    assert 1
+
+output :- 
+C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\venv\Scripts\python.exe "C:/Program Files/JetBrains/PyCharm Community Edition 2023.1/plugins/python-ce/helpers/pycharm/_jb_pytest_runner.py" --target test_o1_module1.py::test_subtraction 
+Testing started at 3:55 AM ...
+Launching pytest with arguments test_o1_module1.py::test_subtraction --no-header --no-summary -q in C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\pytest_assertions
+============================= test session starts =============================
+collecting ... collected 1 item
+test_o1_module1.py::test_subtraction PASSED                              [100%]
+============================== 1 passed in 0.02s ==============================
+Process finished with exit code 0
+
+
+Scenario 2 :- if we fail the test intentionally. 
+file name - test_01_module1.py
+def test_addition():
+    assert 5+5 == 10
+
+def test_subtraction():
+    assert 0
+
+output :- 
+C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\venv\Scripts\python.exe "C:/Program Files/JetBrains/PyCharm Community Edition 2023.1/plugins/python-ce/helpers/pycharm/_jb_pytest_runner.py" --target test_o1_module1.py::test_subtraction 
+Testing started at 3:54 AM ...
+Launching pytest with arguments test_o1_module1.py::test_subtraction --no-header --no-summary -q in C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\pytest_assertions
+
+============================= test session starts =============================
+collecting ... collected 1 item
+test_o1_module1.py::test_subtraction FAILED                              [100%]
+test_o1_module1.py:4 (test_subtraction)
+def test_subtraction():
+>       assert 0
+E       assert 0
+test_o1_module1.py:6: AssertionError
+============================== 1 failed in 0.10s ==============================
+Process finished with exit code 1
+
+
+
+How to run only just on specific function in the test file. from command prompt. 
+navigate to the project folder from command . 
+type the command. 
+
+pytest -v packagename\filename::function_name without the paranthesis. 
+
+example:- 
+(venv) C:\Users\Administrator\PycharmProjects\ecoders_selenium_python>pytest -v pytest_topics\pytest_assertions\test_o1_module1.py::test_subtraction
+============================================ test session starts =============================================
+platform win32 -- Python 3.11.0, pytest-7.3.1, pluggy-1.0.0 -- C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Administrator\PycharmProjects\ecoders_selenium_python
+collected 1 item
+
+pytest_topics/pytest_assertions/test_o1_module1.py::test_subtraction PASSED                             [100%]
+
+============================================= 1 passed in 0.02s ==============================================
+
+
+part 5 :- 
+what are pytest markers?
+Markers are a way of grouping your test cases. and we can run those marked tests as a group by using the syntax. 
+pytest -m <marker name> 
+
+(Note :- test can have multiple markers and A Marker already used can be used on multiple tests)
+
+
+1. Adding markers to the tests. 
+import pytest at the top of the file (Mandatory)
+2.  add the annotation @pytest.mark.<name of the marker> , to any specific function or to all the funtional test cases. 
+
+example  
+@pytest.mark.functional
+
+running all the functional test cases using the syntax or command. 
+pytest -m functional
+
+
+
+code :- 
+import pytest
+
+@pytest.mark.functional
+def test_addition():
+    assert 5+5 == 10
+
+@pytest.mark.functional
+def test_subtraction():
+    assert 5-5 == 0
+
+@pytest.mark.functional
+@pytest.mark.integration
+def test_failingIntentianal():
+    assert 9/5 == 1.5 , "Failing test intentionally"
+
+@pytest.mark.sanity
+@pytest.mark.str
+def test_mystring():
+    letters = "abcdefghijklmnopqrstuvwxyz"
+    assert letters[:] == letters
+
+
+now running only sanity test cases / tests. (no need to say the filename also. ) just tell the marker name. 
+
+pytest -v -m funtional
+
+output :- 
+============================================ test session starts =============================================
+platform win32 -- Python 3.11.0, pytest-7.3.1, pluggy-1.0.0 -- C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Administrator\PycharmProjects\ecoders_selenium_python
+collected 1 item
+
+pytest_topics/pytest_assertions/test_o1_module1.py::test_subtraction PASSED                             [100%]
+
+============================================= 1 passed in 0.02s ==============================================
+
+(venv) C:\Users\Administrator\PycharmProjects\ecoders_selenium_python>pytest -v -m funtional
+============================================ test session starts =============================================
+platform win32 -- Python 3.11.0, pytest-7.3.1, pluggy-1.0.0 -- C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Administrator\PycharmProjects\ecoders_selenium_python
+collected 7 items / 7 deselected / 0 selected
+
+============================================== warnings summary ==============================================
+pytest_topics\test_o1_module1.py:4
+  C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\pytest_topics\test_o1_module1.py:4: PytestUnknownMarkWarning: Unknown pytest.mark.functional - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.functional
+
+pytest_topics\test_o1_module1.py:9
+  C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\pytest_topics\test_o1_module1.py:9: PytestUnknownMarkWarning: Unknown pytest.mark.functional - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.functional
+
+pytest_topics\test_o1_module1.py:14
+  C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\pytest_topics\test_o1_module1.py:14: PytestUnknownMarkWarning: Unknown pytest.mark.functional - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.functional
+
+pytest_topics\test_o1_module1.py:15
+  C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\pytest_topics\test_o1_module1.py:15: PytestUnknownMarkWarning: Unknown pytest.mark.integration - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.integration
+
+pytest_topics\test_o1_module1.py:20
+  C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\pytest_topics\test_o1_module1.py:20: PytestUnknownMarkWarning: Unknown pytest.mark.sanity - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.sanity
+
+pytest_topics\test_o1_module1.py:21
+  C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\pytest_topics\test_o1_module1.py:21: PytestUnknownMarkWarning: Unknown pytest.mark.str - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.str
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+===================================== 7 deselected, 6 warnings in 0.05s ======================================
+
+
+
+# making modules at class levels or module levels. 
+we need to use  a keyword of pytest. called as pytestmark  and assign it as a varaible name for our marker if we have only one. 
+for exaple. 
+pytestmark = pytest.mark.funtional 
+
+if we have mulitple markers we want to define we have to do it in a list. 
+pytestmark = [pytest.mark.webtest , pytest.mark.sanity , pytest.mark.funtional ]
+
+
+Code example. 
+
+import pytest
+pytestmark = [pytest.mark.functional,pytest.mark.integration, pytest.mark.sanity]
+
+@pytest.mark.functional
+def test_addition():
+    assert 5+5 == 10
+
+
+@pytest.mark.functional
+def test_subtraction():
+    assert 5-5 == 0
+
+
+@pytest.mark.functional
+@pytest.mark.integration
+def test_failing_intentionally():
+    assert 9/5 == 1.5, "Failing test intentionally"
+
+
+@pytest.mark.sanity
+@pytest.mark.str
+def test_mystring():
+    letters = "abcdefghijklmnopqrstuvwxyz"
+    assert letters[:] == letters
+
+
+running only the smoke test cases. 
+pytest -v -m "smoke"
+
+
+
+
+# how to give markers at the projects class level or module level. 
+pytest.ini file coding. in the root folder of the application/project.  
+
+[pytest]
+markers =
+    smoke : smoke testing
+    sanity : sanity testing
+    functional : functional testing
+    integration : integration testing
+
+(Indentation is mandatory) 
+
+Running the test cases using the marker names. 
+
+ pytest -v -m "str"  
+ pytest -v -m "smoke"  
+
+
+
+
+
+part 6 :- making paramatrize tests. 
+
+test_02_paramatrize.py 
+
+import pytest
+
+@pytest.mark.parametrize("test_input" , [82, 78, 45, 66])
+def test_param01(test_input):
+    assert test_input > 50
+
+run the test by right clicking on the file and see the output. 
+
+output :- 
+
+C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\venv\Scripts\python.exe "C:/Program Files/JetBrains/PyCharm Community Edition 2023.1/plugins/python-ce/helpers/pycharm/_jb_pytest_runner.py" --target test_o2_parameterize.py::test_param01 
+Testing started at 5:07 AM ...
+Launching pytest with arguments test_o2_parameterize.py::test_param01 --no-header --no-summary -q in C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\pytest_topics\pytest_assertions
+
+============================= test session starts =============================
+collecting ... collected 4 items
+
+test_o2_parameterize.py::test_param01[82] 
+test_o2_parameterize.py::test_param01[78] 
+test_o2_parameterize.py::test_param01[45] 
+test_o2_parameterize.py::test_param01[66] 
+
+========================= 1 failed, 3 passed in 0.11s =========================
+PASSED                         [ 25%]PASSED                         [ 50%]FAILED                         [ 75%]
+pytest_topics\pytest_assertions\test_o2_parameterize.py:2 (test_param01[45])
+45 != 50
+
+Expected :50
+Actual   :45
+<Click to see difference>
+
+test_input = 45
+
+    @pytest.mark.parametrize("test_input" , [82, 78, 45, 66])
+    def test_param01(test_input):
+>       assert test_input > 50
+E       assert 45 > 50
+
+test_o2_parameterize.py:5: AssertionError
+PASSED                         [100%]
+Process finished with exit code 1
+
+
+
+part 6 :- fixtures in pytest. 
+fixtures are the funtions in pytest used before or after actual functions.
+example:-
+ setting up database connection / initializing connections.
+or 
+ initializing webdriver. 
+or opening files
+
+
+fixtures can be put in individual test files or in conftest.py for making fixtures available in multiple test files. 
+
+2nd ways to use fixtures is to,
+returning data from fixtures
+
+fixtures coding example. 
+
+import pytest
+
+# create a funtion for the fixtures
+@pytest.fixture()
+def setup_list():
+    print("\n Fixture is ready and setup.")
+    states = ["Delhi", "Karnataka", "Goa", "Maharashtra", "Tamil Nadu"]
+    return states
+
+
+# test - using the fixture
+# fixture is passed as the argument in the test_() function
+def test_get_items(setup_list):
+    print(setup_list[1:3])     # karnataka Goa
+    assert setup_list[0] == "Delhi"
+    assert setup_list[::2] == ["Delhi", "Goa", "Tamil Nadu"]
+
+
+
+output :- 
+C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\venv\Scripts\python.exe "C:/Program Files/JetBrains/PyCharm Community Edition 2023.1/plugins/python-ce/helpers/pycharm/_jb_pytest_runner.py" --path C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\pytest_topics\pytest_assertions\test_o3_fixtures.py 
+Testing started at 5:22 AM ...
+Launching pytest with arguments C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\pytest_topics\pytest_assertions\test_o3_fixtures.py --no-header --no-summary -q in C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\pytest_topics\pytest_assertions
+ 
+============================= test session starts =============================
+collecting ... collected 1 item
+test_o3_fixtures.py::test_get_items 
+ Fixture is ready and setup.
+PASSED                               [100%]['Karnataka', 'Goa']
+============================== 1 passed in 0.03s ==============================
+Process finished with exit code 0
+
+
+
+
+
+
+
+python modules : -
+
+1. file handling. 
+2. python to json convertor and vice versa.(serialization and deserialization).
+
+Serialization example. 
+import json
+
+datadict = {"sampleString" : "Ecoders is the best" ,
+            "sampleList" : ["hi", "hello" , "helloworld"],
+            "sampleTuple" : (11,22,33,44,55,66),
+             "sampleObject" : {"course": "python" , "specialization" : "selenium" },
+             "samplenumber" : 40,
+             "sampleBoolean ":True,
+            "noneValue" : None
+            }
+
+print("Converting pyton dictionay into json format.")
+
+resultJson = json.dumps(datadict, sort_keys=True, indent=4)
+print(resultJson)
+
+# checking if its a string or any other format.
+print(type(resultJson) == str)
+
+# loading the json data
+data_dict = json.loads(resultJson)
+# print the data_dict
+print(data_dict)
+print(type(data_dict))
+
+output :- 
+C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\venv\Scripts\python.exe C:\Users\Administrator\PycharmProjects\ecoders_selenium_python\py_modules\O2_serialization.py 
+Converting pyton dictionay into json format.
+{
+    "noneValue": null,
+    "sampleBoolean ": true,
+    "sampleList": [
+        "hi",
+        "hello",
+        "helloworld"
+    ],
+    "sampleObject": {
+        "course": "python",
+        "specialization": "selenium"
+    },
+    "sampleString": "Ecoders is the best",
+    "sampleTuple": [
+        11,
+        22,
+        33,
+        44,
+        55,
+        66
+    ],
+    "samplenumber": 40
+}
+True
+{'noneValue': None, 'sampleBoolean ': True, 'sampleList': ['hi', 'hello', 'helloworld'], 'sampleObject': {'course': 'python', 'specialization': 'selenium'}, 'sampleString': 'Ecoders is the best', 'sampleTuple': [11, 22, 33, 44, 55, 66], 'samplenumber': 40}
+<class 'dict'>
+Process finished with exit code 0
